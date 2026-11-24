@@ -1,0 +1,44 @@
+# Publishes to npm when a GitHub release is published (tag v0.1.0 for
+# version 0.1.0), with npm provenance: the package page then links to the
+# commit and the workflow run that built it.
+#
+# 0.1.0 is published with the NPM_TOKEN secret (environment "npm"): npm can
+# only trust a workflow for a package that already exists. From 0.1.1 on,
+# trusted publishing (OIDC) replaces it: on npmjs.com the package's settings
+# name this repository, this file (release.yml) and the environment "npm",
+# the token is deleted, and the env lines under `npm publish` go. Provenance
+# is signed either way.
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      # Trusted publishing needs npm 11.5.1 or later.
+      - run: npm install -g npm@^11.5.1
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm test
+      - name: The tag matches the version
+        run: |
+          test "v$(node -p "require('./package.json').version")" = "${GITHUB_REF_NAME}"
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

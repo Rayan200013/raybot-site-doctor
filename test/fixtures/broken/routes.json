@@ -1,0 +1,4 @@
+{
+  "redirects": { "/old": "/services" },
+  "compress": false
+}

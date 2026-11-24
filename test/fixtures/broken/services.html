@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Broken on purpose: the same title as /about. -->
+    <title>Services · Example Studio in Beirut, Lebanon</title>
+    <meta
+      name="description"
+      content="Websites, online shops and booking apps for small businesses in Beirut, each at a fixed price agreed after a free first call."
+    />
+    <link rel="canonical" href="{{ORIGIN}}/services" />
+    <link rel="icon" href="/share.png" />
+    <meta property="og:title" content="Services" />
+    <meta property="og:image" content="{{ORIGIN}}/share.png" />
+    <!-- Broken on purpose: a misspelt type. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBuisness",
+        "name": "Example Studio"
+      }
+    </script>
+    <style>
+      body { font-family: sans-serif; margin: 0; color: #222; }
+      header, main { padding: 16px; }
+      header a { display: inline-block; padding: 12px; }
+      /* Broken on purpose: pale text straight on a pale photograph. */
+      .hero { background: url(/photo.svg) center / cover; padding: 48px 16px; }
+      .hero p { color: #d9dde2; font-size: 18px; margin: 0; }
+      /* Broken on purpose: a row wider than any phone. */
+      .row { width: 640px; background: #f3f3f3; padding: 8px; }
+      /* Broken on purpose: two tiny links side by side. */
+      .icons a { display: inline-block; width: 14px; height: 14px; background: #333; margin-right: 2px; }
+      small { font-size: 10px; }
+    </style>
+  </head>
+  <body>
+    <header><a href="/">Example Studio</a></header>
+    <main>
+      <h1>Services</h1>
+      <section class="hero"><p>Websites that open fast on every phone.</p></section>
+      <div class="row">Websites · Online shops · Booking apps · Care and hosting</div>
+      <p class="icons"><a href="/" aria-label="Home"></a><a href="/about" aria-label="About"></a></p>
+      <!-- Broken on purpose: no alt, and the file is missing. -->
+      <img src="/missing.png" width="200" height="100" />
+      <p><small>Prices in US dollars, before tax.</small></p>
+      <p><a href="/">Back home</a></p>
+    </main>
+    <!-- Broken on purpose: calls a function that does not exist. -->
+    <script>
+      startCarousel();
+    </script>
+  </body>
+</html>

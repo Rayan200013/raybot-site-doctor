@@ -1,0 +1,69 @@
+{
+  "name": "raybot-site-doctor",
+  "version": "0.1.0",
+  "description": "An MCP server that checks a website the way a visitor and a search engine see it, and says what to fix first: SEO, sitemaps, structured data, speed, accessibility, phone fit and page errors. No API key, runs on your computer.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "seo",
+    "accessibility",
+    "web-performance",
+    "core-web-vitals",
+    "structured-data",
+    "sitemap",
+    "claude",
+    "claude-code"
+  ],
+  "license": "(MIT AND CC-BY-SA-3.0)",
+  "author": "Raybot (https://raybot.store)",
+  "homepage": "https://github.com/Rayan200013/raybot-site-doctor#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rayan200013/raybot-site-doctor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rayan200013/raybot-site-doctor/issues"
+  },
+  "type": "module",
+  "bin": {
+    "raybot-site-doctor": "dist/index.js"
+  },
+  "exports": {
+    ".": "./dist/server.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md",
+    "LICENSE",
+    "NOTICE.md",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "node scripts/clean.mjs && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test --test-concurrency=1 \"test/**/*.test.ts\"",
+    "test:unit": "node --test \"test/unit/*.test.ts\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "vocabulary": "node scripts/vocabulary.mjs",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.4.0",
+    "axe-core": "^4.14.1",
+    "parse5": "^8.1.1",
+    "playwright-core": "^1.65.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/client": "^2.4.0",
+    "@types/node": "^22.20.5",
+    "prettier": "^3.10.1",
+    "typescript": "^6.0.3"
+  }
+}
